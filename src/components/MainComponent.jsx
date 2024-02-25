@@ -22,7 +22,7 @@ function MainComponent() {
         setCountriesData(data);
       });
   }, []);
-  // console.log(countriesData);
+  console.log(countriesData);
 
   const regSubReg = countriesData.reduce((acc, cv) => {
     if (!acc[cv.region]) {
@@ -36,17 +36,18 @@ function MainComponent() {
   }, {});
 
   const currencyObj = countriesData.reduce((acc, cv) => {
-    if(cv.currencies) {
+    if (cv.currencies) {
       const codeArr = Object.keys(cv.currencies);
       codeArr.forEach((code) => {
-        if(!acc[code]){
+        if (!acc[code]) {
           acc[code] = cv.currencies[code].name;
         }
       });
     }
     return acc;
-  }, {})
-console.log(currencyObj)
+  }, {});
+
+  // console.log(currencyObj)
 
   const filterCountries = countriesData
     .filter((country) => {
@@ -86,8 +87,8 @@ console.log(currencyObj)
   };
 
   const handleChangeCurrency = (e) => {
-    setcurrency(e.targrt.value);
-  }
+    setcurrency(e.target.value);
+  };
 
   // console.log(regSubReg[selectedRegion]);
 
@@ -98,7 +99,7 @@ console.log(currencyObj)
         <Dropdown dataArr={Object.keys(regSubReg)} handleChange={handleChangeRegion} />
         <Dropdown dataArr={selectedRegion ? regSubReg[selectedRegion] : []} handleChange={handleChangeSubRegion} />
         <Sort handleChange={handleSortDropDown} />
-        <Dropdown dataArr={currency} handleChange={handleChangeCurrency}/>
+        <Dropdown dataArr={Object.values(currencyObj)} handleChange={handleChangeCurrency} />
         <Cards countriesData={filterCountries} />
       </>
     );
@@ -109,7 +110,9 @@ console.log(currencyObj)
       <Routes>
         <Route path="/" element={<Body />}></Route>
         <Route path="/details/:id" element={<Detail />}></Route>
-        <Route path="*" element={<h1>notFound</h1>}>Invalid Request</Route>
+        <Route path="*" element={<h1>notFound</h1>}>
+          Invalid Request
+        </Route>
       </Routes>
     </div>
   );

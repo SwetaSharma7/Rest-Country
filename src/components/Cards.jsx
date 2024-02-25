@@ -1,22 +1,29 @@
-import React from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
 
 function Cards({ countriesData }) {
   return (
-    <div className='card-container'>
+    <div className="card-container">
       {countriesData.map((country, index) => (
         <Link to={`/details/${country.cca3}`} key={index} className="link">
-          <div className='card' key={index}>
-            <div className='card-img'>
-              {/* Access the flag using country.flags.png */}
+          <div className="card" key={index}>
+            <div className="card-img">
               <img src={country.flags.png} alt={country.name.common} />
             </div>
-            <div className='card-info'>
+            <div className="card-info">
               <h2>{country.name.common}</h2>
-              <p>Population: {country.population}</p>
-              <p>Region: {country.region}</p>
-              <p>Subregion: {country.subregion}</p>
-              <p>Capital: {country.capital}</p>
+              <p>
+                <b>Population:</b> {country.population}
+              </p>
+              <p>
+                <b>Region:</b> {country.region}
+              </p>
+              <p>
+                <b>Subregion:</b> {country.subregion}
+              </p>
+              <p>
+                <b>Capital:</b> {country.capital}
+              </p>
             </div>
           </div>
         </Link>
