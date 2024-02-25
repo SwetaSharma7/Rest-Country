@@ -69,7 +69,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 100%;
+  width: 90%;
+  margin-left: 1.8rem;
 }
 .card {
   display: flex;

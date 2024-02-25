@@ -4,8 +4,9 @@ import Dropdown from "./Dropdown";
 import { useEffect, useState } from "react";
 import Cards from "./Cards";
 import Sort from "./Sort";
-import Detail from "./Detail";
-import { Routes, Route } from "react-router-dom";
+import CurrencyDropdown from "./CurrencyDropdown";
+// import Detail from "./Detail";
+// import { Routes, Route } from "react-router-dom";
 
 function MainComponent() {
   const [countriesData, setCountriesData] = useState([]);
@@ -22,7 +23,6 @@ function MainComponent() {
         setCountriesData(data);
       });
   }, []);
-  console.log(countriesData);
 
   const regSubReg = countriesData.reduce((acc, cv) => {
     if (!acc[cv.region]) {
@@ -47,11 +47,15 @@ function MainComponent() {
     return acc;
   }, {});
 
-  // console.log(currencyObj)
-
   const filterCountries = countriesData
     .filter((country) => {
-      if (country.name.common.toLowerCase().includes(searchInput.toLowerCase()) && country.region.includes(selectedRegion) && (selectedSubRegion === "" || country.subregion === selectedSubRegion)) {
+      // const currencyCode = Object.keys(country.currencies || {})[0];
+      if (
+        country.name.common.toLowerCase().includes(searchInput.toLowerCase()) &&
+        country.region.includes(selectedRegion) &&
+        (selectedSubRegion === "" || !selectedSubRegion || country.subregion === selectedSubRegion)  
+        // && (currency === " " || currencyCode === currency)
+      ) {
         return true;
       }
       return false;
@@ -92,29 +96,15 @@ function MainComponent() {
 
   // console.log(regSubReg[selectedRegion]);
 
-  const Body = () => {
-    return (
-      <>
-        <Search handleSearch={handleSearch} />
-        <Dropdown dataArr={Object.keys(regSubReg)} handleChange={handleChangeRegion} />
-        <Dropdown dataArr={selectedRegion ? regSubReg[selectedRegion] : []} handleChange={handleChangeSubRegion} />
-        <Sort handleChange={handleSortDropDown} />
-        <Dropdown dataArr={Object.values(currencyObj)} handleChange={handleChangeCurrency} />
-        <Cards countriesData={filterCountries} />
-      </>
-    );
-  };
-
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Body />}></Route>
-        <Route path="/details/:id" element={<Detail />}></Route>
-        <Route path="*" element={<h1>notFound</h1>}>
-          Invalid Request
-        </Route>
-      </Routes>
-    </div>
+    <>
+      <Search handleSearch={handleSearch} />
+      <Dropdown dataArr={Object.keys(regSubReg)} handleChange={handleChangeRegion} />
+      <Dropdown dataArr={selectedRegion ? regSubReg[selectedRegion] : []} handleChange={handleChangeSubRegion} />
+      <Sort handleChange={handleSortDropDown} />
+      <CurrencyDropdown dataArr={currencyObj} handleChange={handleChangeCurrency} />
+      <Cards countriesData={filterCountries} />
+    </>
   );
 }
 
