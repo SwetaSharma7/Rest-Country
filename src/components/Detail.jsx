@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-// import { PulseLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
 
 
 const Detail = () => {
@@ -131,7 +131,7 @@ const Detail = () => {
     </div>
   ) : (
     <div className="notFound">
-      {/* <PulseLoader /> */}
+      <PulseLoader />
     </div>
   );
 };

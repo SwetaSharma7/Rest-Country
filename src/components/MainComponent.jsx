@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 import Cards from "./Cards";
 import Sort from "./Sort";
 import CurrencyDropdown from "./CurrencyDropdown";
-// import Detail from "./Detail";
-// import { Routes, Route } from "react-router-dom";
 
 function MainComponent() {
   const [countriesData, setCountriesData] = useState([]);
@@ -53,7 +51,7 @@ function MainComponent() {
       if (
         country.name.common.toLowerCase().includes(searchInput.toLowerCase()) &&
         country.region.includes(selectedRegion) &&
-        (selectedSubRegion === "" || !selectedSubRegion || country.subregion === selectedSubRegion)  
+        (selectedSubRegion === "" || !selectedSubRegion || country.subregion === selectedSubRegion)
         // && (currency === " " || currencyCode === currency)
       ) {
         return true;
@@ -99,10 +97,12 @@ function MainComponent() {
   return (
     <>
       <Search handleSearch={handleSearch} />
-      <Dropdown dataArr={Object.keys(regSubReg)} handleChange={handleChangeRegion} />
-      <Dropdown dataArr={selectedRegion ? regSubReg[selectedRegion] : []} handleChange={handleChangeSubRegion} />
-      <Sort handleChange={handleSortDropDown} />
-      <CurrencyDropdown dataArr={currencyObj} handleChange={handleChangeCurrency} />
+      <div className="dropdownAll">
+        <Dropdown dataArr={Object.keys(regSubReg)} handleChange={handleChangeRegion} />
+        <Dropdown dataArr={selectedRegion ? regSubReg[selectedRegion] : []} handleChange={handleChangeSubRegion} />
+        <Sort handleChange={handleSortDropDown} />
+        <CurrencyDropdown dataArr={currencyObj} handleChange={handleChangeCurrency} />
+      </div>
       <Cards countriesData={filterCountries} />
     </>
   );
