@@ -1,9 +1,11 @@
 import React from "react";
+import { useDarkMode } from "./Darkmode";
 
 function Sort({handleChange}) {
+  const { isDarkMode } = useDarkMode();
   return (
     <div>
-      <select className="dropdown" onChange={handleChange}>
+      <select className={isDarkMode ? "dropdown dropdown-DM" : "dropdown"} onChange={handleChange}>
         <option value="" defaultValue>
           Sort
         </option>

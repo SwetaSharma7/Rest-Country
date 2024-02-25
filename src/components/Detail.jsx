@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
+import { useDarkMode } from "./Darkmode";
 
 
 const Detail = () => {
+  const { isDarkMode} = useDarkMode();
   const param = useParams();
   const id = param.id;
   const [data, setData] = useState({});
@@ -11,6 +13,7 @@ const Detail = () => {
   
 
   useEffect(() => {
+
     fetch(`https://restcountries.com/v3.1/alpha/${id}`)
       .then((res) => res.json())
       .then((res) => {
@@ -47,19 +50,17 @@ const Detail = () => {
   }
 
   return datafetch == "loaded" ? (
-    <div className="detail-container">
-      <div className="backBtn">
+    <div className={isDarkMode ? "detail-container detail-container-DM" : "detail-container"}>
+      <div className={isDarkMode ? "backBtn backBtn-DM" : "backBtn"}>
         <Link to="/">
-          <button>
-            <span>&larr;</span> &nbsp;Back
+          <button className={isDarkMode ? "back back-DM" : "back"}>
+            <span >&larr;</span> &nbsp;Back
           </button>
         </Link>
       </div>
       <div className="img-details">
-        {/* <div className="img-large"> */}
           <img src={data.flags.png} alt="" />
-        {/* </div> */}
-        <div className="more-details">
+        <div className={isDarkMode ? "more-details more-details-DM" : "more-details"}>
           <h1>{data.name.common}</h1>
           <div className="more-about">
             <div>

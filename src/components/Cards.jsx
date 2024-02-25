@@ -1,16 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDarkMode } from "./Darkmode";
 
 function Cards({ countriesData }) {
+  const { isDarkMode } = useDarkMode();
   return (
-    <div className="card-container">
+    <div className={isDarkMode ? "card-container card-DM" : "card-container"}>
       {countriesData.map((country, index) => (
         <Link to={`/details/${country.cca3}`} key={index} className="link">
           <div className="card" key={index}>
             <div className="card-img">
               <img src={country.flags.png} alt={country.name.common} />
             </div>
-            <div className="card-info">
+            <div className={isDarkMode ? "card-info cardInfo-DM":"card-info"}>
               <h2>{country.name.common}</h2>
               <p>
                 <b>Population:</b> {country.population}

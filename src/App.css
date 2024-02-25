@@ -42,7 +42,6 @@ body {
 }
 
 /* search */
-
 .search {
   display: flex;
   align-items: center;
@@ -51,6 +50,7 @@ body {
   gap: 2rem;
   margin: 2rem;
   color: var(--Dark-Gray);
+  border-radius: 0.5rem;
   background-color: var(--White);
   box-shadow: 0.5px 0.5px 5px 1px rgba(0, 0, 0, 0.2);
 }
@@ -69,12 +69,14 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  /* width: 90%; */
-  /* margin-left: 1.8rem; */
+  margin-top: 2rem;
+
+  padding: 3rem;
 }
 .card {
   display: flex;
   flex-direction: column;
+  background-color: var(--White);
   width: 25rem;
   align-items: center;
   gap: 1.5rem;
@@ -104,18 +106,22 @@ img {
 .dropdown {
   width: 50%;
   padding: 1rem;
-  margin: 1rem 2rem;
   border: none;
+  margin: 1rem 2rem;
   border-radius: 0.5rem;
   background-color: var(--White);
   box-shadow: 0.5px 0.5px 5px 1px rgba(0, 0, 0, 0.2);
+}
+.dropdownAll select{
+  border: none;
+  border-radius: 1rem;
 }
 .dropdownAll {
   display: flex;
   flex-direction: column;
 }
-/* 2nd page */
 
+/* 2nd page */
 .backBtn {
   margin: 2rem 2rem;
 }
@@ -134,11 +140,11 @@ img {
   margin: 2rem;
   border-radius: 0.3rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  background-color: white;
   padding: 1rem;
 }
 .img-details {
   margin: 2rem;
+  margin-bottom: 5rem;
   margin-top: 0;
 }
 .extra-details {
@@ -146,8 +152,9 @@ img {
 }
 .borders-name span {
   border: 1px solid black;
-  padding: 0.3;
+  padding: 0.2rem 0.4rem;
   border-radius: 0.2rem;
+  margin-left: 0.3rem;
 }
 .notFound {
   display: flex;
@@ -155,7 +162,21 @@ img {
   font-size: 3rem;
   padding: 6rem 0;
 }
-
+/* DarkMode */
+.header-DM,
+.dark-mode,
+.input-DM,
+.cardInfo-DM, 
+.more-details-DM, .detail-container-DM, .backBtn-DM, .dropdown-DM{
+  background-color: var(--Dark-Blue);
+  color: var(--White);
+}
+.dark-mode,
+.app-DM,
+.content-DM, .back-DM {
+  background-color: var(--Very-Dark-Blue);
+  color: var(--White);
+}
 @media (min-width: 990px) {
   .dropdownAll {
     flex-direction: row;
@@ -170,7 +191,6 @@ img {
   }
   .detail-container {
     box-shadow: rgba(0, 0, 0, 0) 0px 5px 15px;
-    background-color: var(--Very-Light-Gray);
   }
 
   .img-details img {
@@ -178,7 +198,6 @@ img {
     height: auto;
   }
   .more-about {
-    /* background-color: red; */
     display: flex;
     gap: 50px;
     padding: 2rem 0;
@@ -186,4 +205,5 @@ img {
   .extra-details {
     margin: 0;
   }
+  
 }

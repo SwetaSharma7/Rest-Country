@@ -1,10 +1,13 @@
 import React from "react";
+import { useDarkMode } from "./Darkmode";
 
 function CurrencyDropdown({dataArr, handleChange}) {
+    const {isDarkMode} = useDarkMode();
+
     const curr = Object.values(dataArr)
   return (
     <>
-      <select className="dropdown" onChange={handleChange}>
+      <select className={isDarkMode ? "dropdown dropdown-DM" : "dropdown"} onChange={handleChange}>
         <option value="" defaultValue>
           Filter By Currency
         </option>
