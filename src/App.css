@@ -167,7 +167,7 @@ img {
 .dark-mode,
 .input-DM,
 .cardInfo-DM, 
-.more-details-DM, .detail-container-DM, .backBtn-DM, .dropdown-DM{
+.more-details-DM, .detail-container-DM, .backBtn-DM, .dropdown-DM, .search-DM{
   background-color: var(--Dark-Blue);
   color: var(--White);
 }
